@@ -142,7 +142,7 @@ async function getLocation() {
       userLocation = `https://www.google.com/maps?q=${lat},${lng}`;
 
       try {
-        // 🔥 Reverse geocoding (OpenStreetMap)
+        //  Reverse geocoding (OpenStreetMap)
         const res = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
         );
@@ -193,27 +193,7 @@ function getLocation() {
 
 */
 
-
 /*
-function submitOrder() {
-  const nama = document.getElementById("nama").value;
-  const alamat = document.getElementById("alamat").value;
-  const wa = document.getElementById("wa").value;
-
-  let pesan = "Halo, saya mau order:%0A";
-
-  cart.forEach(item => {
-    pesan += `${item.name} x${item.qty}%0A`;
-  });
-
-  pesan += `%0ANama: ${nama}`;
-  pesan += `%0AAlamat: ${alamat}`;
-  pesan += `%0AWA: ${wa}`;
-
-  window.open("https://wa.me/62895372774329?text=" + pesan);
-}
-*/
-
 function submitOrder() {
   const nama = document.getElementById("nama").value;
   const alamat = document.getElementById("alamat").value;
@@ -238,6 +218,46 @@ function submitOrder() {
   pesan += `%0A%0ATolong kirim titik lokasi jika belum sesuai ya 🙏`;
 
   window.open("https://wa.me/62895372774329?text=" + pesan);
+}
+*/
+
+function submitOrder() {
+  const nama = document.getElementById("nama").value;
+  const alamat = document.getElementById("alamat").value;
+  const wa = document.getElementById("wa").value;
+
+  let pesan = "Halo, saya mau order:%0A";
+
+  cart.forEach(item => {
+    pesan += `${item.name} x${item.qty}%0A`;
+  });
+
+  pesan += `%0ANama: ${nama}`;
+  pesan += `%0AAlamat: ${alamat}`;
+  pesan += `%0AWA: ${wa}`;
+
+  if (userLocation) {
+    pesan += `%0ALokasi: ${userLocation}`;
+  }
+
+  // Buka WhatsApp
+  window.open("https://wa.me/62895372774329?text=" + pesan);
+
+  // RESET SEMUA SETELAH CHECKOUT
+  cart = []; // kosongkan cart
+  userLocation = ""; // reset lokasi
+
+  renderCart(); // update tampilan cart
+  updateCartNotification(); // reset badge
+
+  // reset form
+  document.getElementById("nama").value = "";
+  document.getElementById("alamat").value = "";
+  document.getElementById("wa").value = "";
+  document.getElementById("lokasiText").innerText = "";
+
+  // tutup modal
+  closeCheckout();
 }
 
 renderMenu();
