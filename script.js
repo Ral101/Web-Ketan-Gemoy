@@ -274,7 +274,7 @@ function formatRupiah(angka) {
 function submitOrder() {
   const nama = document.getElementById("nama").value;
   const alamat = document.getElementById("alamat").value;
-  const wa = document.getElementById("wa").value;
+  // const wa = document.getElementById("wa").value;
 
   let total = 0;
   let pesan = "Halo, saya mau order:%0A%0A";
@@ -307,7 +307,7 @@ function submitOrder() {
   // Data user
   pesan += `Nama: ${nama}%0A`;
   pesan += `Alamat: ${alamat}%0A`;
-  pesan += `WhatsApp: ${wa}%0A`;
+  // pesan += `WhatsApp: ${wa}%0A`;
 
   if (userLocation) {
     pesan += `Lokasi: ${userLocation}%0A`;
@@ -325,7 +325,7 @@ function submitOrder() {
 
   document.getElementById("nama").value = "";
   document.getElementById("alamat").value = "";
-  document.getElementById("wa").value = "";
+  // document.getElementById("wa").value = "";
   document.getElementById("lokasiText").innerText = "";
 
   closeCheckout();
